@@ -6,7 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { FingerprintjsProAngularService } from '@fingerprintjs/fingerprintjs-pro-angular';
-import { AccoutService } from '../services/accout.service';
+import { AccountService } from '../services/account.service';
 
 @Component({
   selector: 'app-fingerprint',
@@ -23,13 +23,14 @@ export class FingerprintComponent {
   });
 
   constructor(
-    private accountService: AccoutService,
+    private accountService: AccountService,
     private fingerprintService: FingerprintjsProAngularService
   ) {}
 
   async handleSubmit() {
     this.isLoading.set(true);
     const data = await this.fingerprintService.getVisitorData();
+    
     this.accountService.register({
       formData: this.registerForm.value,
       requestId: data.requestId,

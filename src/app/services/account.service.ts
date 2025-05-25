@@ -9,7 +9,7 @@ interface RegisterArgs {
 @Injectable({
   providedIn: 'root',
 })
-export class AccoutService {
+export class AccountService {
   private _url = 'http://localhost:4200/api/register';
 
   constructor(private httpClient: HttpClient) {}
