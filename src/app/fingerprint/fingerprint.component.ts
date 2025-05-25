@@ -33,24 +33,22 @@ export class FingerprintComponent {
   async handleSubmit() {
     this.isLoading.set(true);
     this.hasError.set(false);
+
     try {
       const data = await this.fingerprintService.getVisitorData();
 
-      this.accountService.register({
+      const res = await this.accountService.register({
         formData: this.registerForm.value,
         requestId: data.requestId,
       });
 
       // Redirect  on success
-      this.router.navigate([
-        '/success',
-        {
-          state: {
-            username: this.registerForm.value.username,
-            requestId: data.requestId,
-          },
+      this.router.navigate(['/success'], {
+        state: {
+          username: res.username,
+          requestId: res.requestId,
         },
-      ]);
+      });
     } catch (err) {
       console.error('Registration failed', err);
       this.hasError.set(true);
