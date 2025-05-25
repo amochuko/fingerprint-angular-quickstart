@@ -7,6 +7,7 @@ import {
   withEventReplay,
 } from '@angular/platform-browser';
 import { routes } from './app.routes';
+import { provideFingerprintPro } from './utils/fingerprint.provider';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -14,5 +15,6 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideClientHydration(withEventReplay()),
     provideHttpClient(),
+    provideFingerprintPro({ loadOptions: { apiKey: 'RtEE3PpC0Aq83yul0A6I' } }),
   ],
 };
