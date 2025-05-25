@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { firstValueFrom } from 'rxjs';
 
 interface RegisterArgs {
   requestId: string;
@@ -14,11 +15,9 @@ export class AccountService {
 
   constructor(private httpClient: HttpClient) {}
 
-  register(args: RegisterArgs) {
+  async register(args: RegisterArgs): Promise<any> {
     try {
-      this.httpClient.post(this._url, args).subscribe((res) => {
-        console.log('Registered successfullly: ', res);
-      });
+      return await firstValueFrom(this.httpClient.post(this._url, args));
     } catch (err) {
       console.error('Registration error:', err);
       throw err;
