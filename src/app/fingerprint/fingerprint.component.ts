@@ -7,7 +7,7 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FingerprintjsProAngularService } from '@fingerprintjs/fingerprintjs-pro-angular';
-import { AccountService } from '../services/account.service';
+import { AccountService } from '../services/account/account.service';
 
 @Component({
   selector: 'app-fingerprint',
@@ -49,6 +49,10 @@ export class FingerprintComponent {
         formData: this.registerForm.value,
         requestId: data.requestId,
       });
+
+      console.log(`
+            Visitor ID: ${data.visitorId}
+            Request ID: ${data.requestId}`);
 
       // Redirect  on success
       this.router.navigate(['/success'], {
