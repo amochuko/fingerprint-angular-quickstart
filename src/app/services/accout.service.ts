@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { FingerprintjsProAngularService } from '@fingerprintjs/fingerprintjs-pro-angular';
 
 interface RegisterArgs {
   requestId: string;
@@ -13,13 +12,13 @@ interface RegisterArgs {
 export class AccoutService {
   private _url = 'http://localhost:4200/api/register';
 
-  constructor(
-    private httpClient: HttpClient,
-    private fingerprintService: FingerprintjsProAngularService
-  ) {}
+  constructor(private httpClient: HttpClient) {}
 
   register(args: RegisterArgs) {
     try {
+      this.httpClient.post(this._url, args).subscribe((res) => {
+        console.log('Registered successfullly: ', res);
+      });
     } catch (err) {
       console.error('Registration error:', err);
       throw err;
