@@ -15,8 +15,25 @@ const browserDistFolder = resolve(serverDistFolder, '../browser');
 const app = express();
 const angularApp = new AngularNodeAppEngine();
 
+const allowedOrigins = [
+  'http://localhost:4200',
+  'https://fingerprint-angular-quickstart.vercel.app',
+];
+
 // Activate middleware
-app.use(cors({ origin: 'http://localhost:4200' }));
+app.use(
+  cors({
+    origin: (origin, cb) => {
+      // Allow request with no origin (eg, mobile apps or curl)
+      if (!origin) return cb(null, true);
+      if (allowedOrigins.includes(origin)) {
+        return cb(null, true);
+      } else {
+        return cb(new Error('Not allowed by CORS'));
+      }
+    },
+  })
+);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
