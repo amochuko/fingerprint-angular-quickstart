@@ -20,8 +20,8 @@ app.use(cors({ origin: 'http://localhost:4200' }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.get('/api/register', (req, res) => {
-  // You save the details into a database of your choice
+app.post('/api/register', (req, res) => {
+  // You can save the details into a database of your choice
   const { requestId, formData } = req.body;
 
   res.json({ requestId });
