@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-success',
@@ -8,5 +8,11 @@ import { RouterModule } from '@angular/router';
   styleUrl: 'success.component.css',
 })
 export class SuccessComponent {
-  @Input() myRequestId = ''
+  private router = inject(Router);
+
+  username =
+    this.router.getCurrentNavigation()?.extras.state?.['username'] ?? 'User';
+  requestId =
+    this.router.getCurrentNavigation()?.extras.state?.['requestId'] ??
+    'Unknown';
 }
