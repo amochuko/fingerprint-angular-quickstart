@@ -1,4 +1,4 @@
-<div class="fingerprint-wrapper">
+<div class="fingerprint container">
     <h1>Create an account</h1>
     <form (ngSubmit)="handleSubmit()" [formGroup]="registerForm">
         <div class="input-group">
@@ -13,7 +13,13 @@
         <button [disabled]="isLoading()" type="submit">
             {{ isLoading() ? "Loading…" : "Create Account" }}
         </button>
-
     </form>
 
+    @if (isLoading()) {
+    <div>Registering...</div>
+    }
+    @if (hasError()) {
+
+    <div class="error">Registration failed. Please try again.</div>
+    }
 </div>
