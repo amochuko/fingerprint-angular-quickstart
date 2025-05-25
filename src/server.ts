@@ -24,7 +24,7 @@ app.post('/api/register', (req, res) => {
   // You can save the details into a database of your choice
   const { requestId, formData } = req.body;
 
-  res.json({ requestId });
+  res.json({ requestId, username: formData.username });
 });
 
 /**
