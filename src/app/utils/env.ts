@@ -1,5 +1,3 @@
-import dotenv from 'dotenv';
-dotenv.config();
+import { environment } from "../environment/environment";
 
-export const FINGERPRINT_API_KEY_PUBLIC =
-  process.env['FINGERPRINT_API_KEY_PUBLIC'];
+export const FINGERPRINT_API_KEY_PUBLIC = environment.fingerprintApiKeyPublic;
