@@ -17,7 +17,12 @@ export const appConfig: ApplicationConfig = {
     provideClientHydration(withEventReplay()),
     provideHttpClient(withFetch()),
     provideFingerprintPro({
-      loadOptions: { apiKey: String(FINGERPRINT_API_KEY_PUBLIC) },
+      loadOptions: {
+        apiKey: String(FINGERPRINT_API_KEY_PUBLIC),
+        region: 'eu',
+        // Ensure this matches your workspace region
+        // For more information, see https://dev.fingerprint.com/docs/regions
+      },
     }),
   ],
 };
