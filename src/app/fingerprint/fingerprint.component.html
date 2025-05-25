@@ -1,0 +1,19 @@
+<div class="fingerprint-wrapper">
+    <h1>Create an account</h1>
+    <form [formGroup]="registerForm">
+        <div class="input-group">
+            <label for="username">Username</label>
+            <input id="username" type="text" placeholder="Username" formControlName="username" required />
+
+        </div>
+        <div class="input-group">
+            <label for="password">Password</label>
+            <input id="password" type="password" placeholder="Password" formControlName="password" required />
+        </div>
+        <button [disabled]="isLoading()" type="submit">
+            {{ isLoading() ? "Loading…" : "Create Account" }}
+        </button>
+
+    </form>
+
+</div>
