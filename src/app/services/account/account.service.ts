@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
+import { environment } from '../../environment/environment';
 
 interface RegisterArgs {
   requestId: string;
@@ -11,7 +12,7 @@ interface RegisterArgs {
   providedIn: 'root',
 })
 export class AccountService {
-  private _url = 'http://localhost:4200/api/register';
+  private _url = `${environment.apiUrl}/register`;
 
   constructor(private httpClient: HttpClient) {}
 
