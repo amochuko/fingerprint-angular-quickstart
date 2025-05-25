@@ -19,6 +19,14 @@ export class FingerprintComponent {
   isLoading = signal(false);
   hasError = signal(false);
 
+  get username() {
+    return this.registerForm.get('username')!;
+  }
+
+  get password() {
+    return this.registerForm.get('password')!;
+  }
+
   registerForm = new FormGroup({
     username: new FormControl('', Validators.required),
     password: new FormControl('', [Validators.required, Validators.min(8)]),
