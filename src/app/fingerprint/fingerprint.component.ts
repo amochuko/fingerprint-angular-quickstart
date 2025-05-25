@@ -5,6 +5,8 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { FingerprintjsProAngularService } from '@fingerprintjs/fingerprintjs-pro-angular';
+import { AccoutService } from '../services/accout.service';
 
 @Component({
   selector: 'app-fingerprint',
@@ -19,4 +21,18 @@ export class FingerprintComponent {
     username: new FormControl('', Validators.required),
     password: new FormControl('', [Validators.required, Validators.min(8)]),
   });
+
+  constructor(
+    private accountService: AccoutService,
+    private fingerprintService: FingerprintjsProAngularService
+  ) {}
+
+  async handleSubmit() {
+    this.isLoading.set(true);
+    const data = await this.fingerprintService.getVisitorData();
+    this.accountService.register({
+      formData: this.registerForm.value,
+      requestId: data.requestId,
+    });
+  }
 }
