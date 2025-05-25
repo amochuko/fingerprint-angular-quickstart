@@ -17,13 +17,13 @@ describe('AppComponent', () => {
   it(`should have the 'fingerprint-angular-quickstart' title`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('fingerprint-angular-quickstart');
+    expect(app.title).toEqual('fingerprint angular quickstart');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, fingerprint-angular-quickstart');
+    expect(compiled.querySelector('h1')?.textContent).toContain('fingerprint angular quickstart');
   });
 });
