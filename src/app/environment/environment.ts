@@ -1,6 +1,7 @@
 export const environment = {
   production: false,
+  
+  // 1. Replace `<your-public-api-key>` with your actual public API key from the [Fingerprint dashboard](https://dashboard.fingerprint.com/api-keys).
   fingerprintApiKeyPublic: 'RtEE3PpC0Aq83yul0A6I',
+apiUrl: 'http://localhost:4200/api'  
 };
-
-// 1. Replace `<your-public-api-key>` with your actual public API key from the [Fingerprint dashboard](https://dashboard.fingerprint.com/api-keys).
