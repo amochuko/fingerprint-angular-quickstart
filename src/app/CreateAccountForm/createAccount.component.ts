@@ -1,14 +1,13 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { FingerprintjsProAngularService } from '@fingerprintjs/fingerprintjs-pro-angular';
-import { environment } from '../environment/environment';
 
 @Component({
   selector: 'app-create-account-form',
   imports: [FormsModule],
   template: `<div class="wrapper">
     <h1>Create an account</h1>
-    <p>Username: {{ username }}</p>
+
     <div class="input-group">
       <label for="username">Username</label>
       <input
@@ -100,19 +99,25 @@ export class CreateAccountFormComponent {
 
   async handleSubmit() {
     this.isLoading = true;
-    alert(`${this.username}, ${this.password}`);
 
     try {
-      const data = await this.fingerprintService.getVisitorData();
+      const { requestId, visitorId } =
+        await this.fingerprintService.getVisitorData();
 
-      // 
-      // 
-      
       console.log(`
-        Visitor ID: ${data.visitorId}
-        Request ID: ${data.requestId}`);
-        
+        Visitor ID: ${visitorId}
+        Request ID: ${requestId}`);
 
+      // Send the requestId to your server
+      // await fetch("/api/create-account", {
+      //   method: "POST",
+      //   headers: { "Content-Type": "application/json" },
+      //   body: JSON.stringify({
+      //     username: this.username,
+      //     password: this.password,
+      //     requestId,
+      //   }),
+      // });
     } catch (err) {
       console.error('Registration failed', err);
     } finally {
