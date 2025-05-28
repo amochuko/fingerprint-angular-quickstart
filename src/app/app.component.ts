@@ -1,13 +1,11 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { CreateAccountFormComponent } from './CreateAccountForm/createAccount.component';
+import { CreateAccountFormComponent } from './create-account-form/create-account-form.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, CreateAccountFormComponent],
+  imports: [CreateAccountFormComponent],
   template: `<main class="main">
     <app-create-account-form />
-    <router-outlet />
   </main>`,
 })
 export class AppComponent {}
