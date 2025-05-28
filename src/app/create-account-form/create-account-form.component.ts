@@ -122,6 +122,8 @@ export class CreateAccountFormComponent {
       console.error('Registration failed', err);
     } finally {
       this.isLoading = false;
+      this.username = '';
+      this.password = '';
     }
   }
 }
