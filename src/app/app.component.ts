@@ -1,14 +1,13 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { FingerprintComponent } from './fingerprint/fingerprint.component';
-import { CommonModule } from '@angular/common';
+import { CreateAccountFormComponent } from './CreateAccountForm/createAccount.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, CommonModule],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css',
+  imports: [RouterOutlet, CreateAccountFormComponent],
+  template: `<main class="main">
+    <app-create-account-form />
+    <router-outlet />
+  </main>`,
 })
-export class AppComponent {
-  title = 'fingerprint angular quickstart';
-}
+export class AppComponent {}
