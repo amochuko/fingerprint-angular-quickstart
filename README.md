@@ -75,7 +75,7 @@ Once the server is running, open your browser and navigate to `http://localhost:
    
 1. Before hooking up Fingerprint, create a new component at `src/app/create-account-form/create-account-form.component.ts` with the following: 
  
-```javascript
+```typescript
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
@@ -171,7 +171,7 @@ export class CreateAccountFormComponent {}
 
 1. Import and add the component to your `App` in `src/app/app.ts`:
    
-```javascript
+```typescript
 
 // ... other imports here
 import { CreateAccountFormComponent } from './create-account-form/create-account-form.component';
@@ -198,7 +198,7 @@ npm install @fingerprintjs/fingerprintjs-pro-angular
 
 2. For that reason, we'll create a `src/app/utils/fingerprint.provider.ts` file with the following code:
 
-```javascript
+```typescript
 import { EnvironmentProviders, Provider } from '@angular/core';
 import {
   FingerprintjsProAngularModule,
@@ -217,9 +217,9 @@ export function provideFingerprintPro(
 
 3. Now that we have `provideFingerprintPro`, import and initialize it in your app config entry point. Open `src/app/app.config.ts` and add the Fingerprint provider `provideFingerprintPro` function into the `providers` array of the config option:   
 
-```javascript
+```typescript
 // ... other imports here
-import { FINGERPRINT_API_KEY_PUBLIC } from './utils/env';
+import { environment } from './environment/environment';
 import { provideFingerprintPro } from './utils/fingerprint.provider';
 
 export const appConfig: ApplicationConfig = {
@@ -227,7 +227,7 @@ export const appConfig: ApplicationConfig = {
     // ...other config options 
     provideFingerprintPro({
       loadOptions: {
-        apiKey: '<your-public-api-key>',
+        apiKey: environment.FINGERPRINT_API_KEY_PUBLIC,
         region: 'eu',
         // Ensure this matches your workspace region
         // For more information, see https://dev.fingerprint.com/docs/regions
@@ -237,8 +237,28 @@ export const appConfig: ApplicationConfig = {
 };
 ```
 
-4. Replace `<your-public-api-key>` with your actual public API key from the [Fingerprint dashboard](https://dashboard.fingerprint.com/api-keys).
+4. Replace `FINGERPRINT_API_KEY_PUBLIC` with your actual public API key from the [Fingerprint dashboard](https://dashboard.fingerprint.com/api-keys).
 
+> *Note: You don't need a .env file for Angular, just define varibles directly in:
+- `src/app/environment/environment.ts`
+- `src/app/environment/environment.prod.ts`
+   
+  Angular CLI replaces the environment file based on the build configuration:
+
+  ```typescript
+  // environment.ts
+  export const environment = {
+    production: false,
+    FINGERPRINT_API_KEY_PUBLIC:  `<replace-with-your-public-api-key-for-dev>`
+  };
+
+  // environment.prod.ts
+  export const environment = {
+    production: true,
+    FINGERPRINT_API_KEY_PUBLIC:  `<replace-with-your-public-api-key-for-prod>`
+  };
+  ```
+> 
  
 ## 5. Trigger visitor identification
 
@@ -250,7 +270,7 @@ This ID is unique to each identification event. Your server can then use the [Fi
 
 1. Within the empty `CreateAccountFormComponent` class in `create-account-form.component.ts`, declare username and password as property with empty string as initial value to track your form inputs. Also import the FingerprintjsProAngularServicec:
 
-```javascript
+```typescript
 import { FingerprintjsProAngularService } from '@fingerprintjs/fingerprintjs-pro-angular';
 
 // ... rest of component here
@@ -264,7 +284,7 @@ export class CreateAccountFormComponent {
 ```
 2. Configure the Fingerprint service by passing it into the `CreateAccountFormComponent` class `constructor`.  This automatically initializes it via `Dependency Injection`
 
-```javascript
+```typescript
 // create-account-form.component.ts
 
 export class CreateAccountFormComponent {
@@ -276,7 +296,7 @@ export class CreateAccountFormComponent {
 ```
 3. Define the submit handler to trigger identification when the user clicks “Create Account”:
 
-```javascript
+```typescript
 // create-account-form.component.ts
 
  async handleSubmit() {
@@ -321,12 +341,12 @@ npm start
 ```
 
 1. In your browser, go to http://localhost:4200 (Angular’s default).
-2. If you have any ad blockers, turn them off for localhost. View our [documentation](https://dev.fingerprint.com/docs/protecting-the-javascript-agent-from-adblockers) to learn how to protect your Fingerprint implementation from ad blockers in production.
+2. If you have any ad blockers, turn them off for localhost. View our [documentation](https://dev.fingerprint.com/docs/protecting-the-typescript-agent-from-adblockers) to learn how to protect your Fingerprint implementation from ad blockers in production.
 3. Enter a username and password, then click **Create Account**.
 4. You will be redirected to a success page
 5. Open the developer console in your browser and you should see the visitor ID and request ID in the output:
 
-```javascript
+```typescript
 
 Visitor ID: kLmvO1y70BHKyTgoNoPq
 Request ID: 9171022083823.zox1GS
