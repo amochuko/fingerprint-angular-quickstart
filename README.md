@@ -169,7 +169,7 @@ button[type="submit"]:disabled {
 export class CreateAccountFormComponent {}
 ```
 
-2. Import and add the component to your `AppComponent` in `src/app/app.component.ts`:
+1. Import and add the component to your `App` in `src/app/app.ts`:
    
 ```javascript
 
@@ -183,7 +183,7 @@ import { CreateAccountFormComponent } from './create-account-form/create-account
               <app-create-account-form />
             </main>`,
 })
-export class AppComponent {}
+export class App {}
 ```
 
 ## 4. Install and initialize the Fingerprint SDK
