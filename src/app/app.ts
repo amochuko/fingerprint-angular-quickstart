@@ -8,4 +8,4 @@ import { CreateAccountFormComponent } from './create-account-form/create-account
     <app-create-account-form />
   </main>`,
 })
-export class AppComponent {}
+export class App {}
