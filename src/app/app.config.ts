@@ -1,8 +1,7 @@
 import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
-
 import { routes } from './app.routes';
-import { FINGERPRINT_API_KEY_PUBLIC } from './utils/env';
+import { environment } from './environment/environment';
 import { provideFingerprintPro } from './utils/fingerprint.provider';
 
 export const appConfig: ApplicationConfig = {
@@ -11,7 +10,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideFingerprintPro({
       loadOptions: {
-        apiKey: String(FINGERPRINT_API_KEY_PUBLIC),
+        apiKey: environment.FINGERPRINT_API_KEY_PUBLIC,
         region: 'eu',
         // Ensure this matches your workspace region
         // For more information, see https://dev.fingerprint.com/docs/regions
